@@ -1,0 +1,201 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 120% 80% at 20% 10%, #1a2420 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 85% 90%, #2a1810 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, #0d1214 0%, #050708 100%);
+  color: #d4cfc4;
+  font-family: "DM Mono", ui-monospace, monospace;
+}
+
+#gl {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.overlay .listen {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.veil {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(
+    165deg,
+    rgba(5, 7, 8, 0.92) 0%,
+    rgba(5, 7, 8, 0.55) 45%,
+    transparent 70%
+  );
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+.veil.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.wordmark {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #ebe6dc;
+  text-shadow: 0 0 80px rgba(196, 165, 116, 0.25);
+}
+
+.subline {
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: lowercase;
+  color: #8a9a92;
+}
+
+.enter {
+  pointer-events: auto;
+  cursor: pointer;
+  margin-top: 2rem;
+  padding: 0.65rem 1.8rem;
+  border: 1px solid rgba(196, 165, 116, 0.45);
+  background: rgba(8, 12, 11, 0.5);
+  color: #c4a574;
+  font-family: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: lowercase;
+  transition: border-color 0.25s, color 0.25s, box-shadow 0.25s;
+}
+
+.enter:hover,
+.enter:focus-visible {
+  border-color: #8fdc7a;
+  color: #b8f0a8;
+  box-shadow: 0 0 24px rgba(143, 220, 122, 0.15);
+  outline: none;
+}
+
+.hud {
+  pointer-events: none;
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  opacity: 0.85;
+  transition: opacity 0.35s ease;
+}
+
+.hud.hidden {
+  opacity: 0;
+}
+
+.hud-brand {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #c4a574;
+}
+
+.hud-mode {
+  color: #8fdc7a;
+}
+
+.hud-hint {
+  color: #5a6560;
+  font-weight: 300;
+}
+
+.listen {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(90, 101, 96, 0.5);
+  background: rgba(5, 7, 8, 0.55);
+  color: #5a6560;
+  font-family: inherit;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.listen.active {
+  border-color: rgba(143, 220, 122, 0.5);
+  color: #8fdc7a;
+}
+
+.listen:hover,
+.listen:focus-visible {
+  color: #a8b8b0;
+  outline: none;
+}
+
+.fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #050708;
+  text-align: center;
+}
+
+.fallback.hidden {
+  display: none;
+}
+
+.fallback-title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 2.5rem;
+  color: #c4a574;
+}
+
+.fallback-msg {
+  font-size: 0.75rem;
+  color: #8a9a92;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veil {
+    transition-duration: 0.01ms;
+  }
+}
